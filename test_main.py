@@ -6,11 +6,11 @@ import os
 def test_extract_nifti_data():
     data = np.ones((32, 32, 15, 100), dtype=np.int16)
     img = nib.Nifti1Image(data, np.eye(4))
-    path = os.path.join(tmpdir, "./test_img.nii.gz")
+    path = "./test_img.nii.gz"
     nib.save(img, path)
     loaded_data = extract_nifti_data(path)
     assert np.array_equal(data, loaded_data), "loading incorrect"
-    
+    os.system("rm test_img.nii.gz")
 
 def test_threshold_data():
     data =np.random.randn(4, 4)
